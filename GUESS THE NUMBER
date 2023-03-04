@@ -1,0 +1,52 @@
+package Programs;
+
+import javax.swing.JOptionPane;
+
+public class GuessNumber{
+    public static void main(String[] args) {
+        // initializing variables
+
+        int answer = (int) (Math.random()*100 + 1);
+        int userGuess = 0;
+        int count = 1;
+
+        // user interface
+
+        while (userGuess != answer){
+            String response = JOptionPane.showInputDialog(null,"Enter a number between 1 to 100"
+            ,"Guessing Game",3);
+
+            userGuess = Integer.parseInt(response);
+
+            JOptionPane.showMessageDialog(null, validate(userGuess, answer, count));
+
+            count ++;
+        }
+    }
+
+    // logic of game
+
+    public static String validate(int userGuess, int answer, int count){
+        if (userGuess <= 0 || userGuess > 100){
+            return "Guess is not valid!";
+        }
+        else if (userGuess == answer){
+            return "Your Guess is correct!\nYou won in "+count+" guesses!";
+        }
+        else if ((userGuess - answer)>10){
+            return "Your Guess is Too High!";
+        }
+        else if ((answer - userGuess)>10){
+            return "Your Guess is Too Low!";
+        }
+        else if ((userGuess - answer) < 10 && (userGuess - answer) >= 0){
+            return "Your Guess is little High!";
+        }
+        else if ((answer - userGuess) < 10 && (answer - userGuess) >= 0){
+            return "Your Guess is little Low!";
+        }
+        else{
+            return "You input in invalid";
+        }
+    }
+}
